@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sliding form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <div class="background">
+            <div class="content invisible">
+                <h2>Have an account?</h2>
+                <p>Lorem ipsum dolor sit amet. Left text bla bla bla bla lorem ipsum something something.</p>
+                <button id="left-button">LOG IN</button>
+            </div>
+            <div class="content visible">
+                <h2>Don't have an account?</h2>
+                <p>Right text yadda yadda yadda lorem ipsum something something. Something else entirely.</p>
+                <button id="right-button">SIGN UP</button>
+            </div>
+        </div>
+
+        <div class="foreground">
+            <div class="content visible">
+                <h2>Log in</h2>
+                <form id="login">
+                    <label for="login-email">E-mail:</label>
+                    <input type="email" id="login-email" name="email" placeholder="E-mail">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" placeholder="Password">
+                </form>
+                <div class="row">
+                    <button type="submit" form="login" value="Login">LOG IN</button>
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div class="content invisible">
+                <h2>Sign up</h2>
+                <form id="register">
+                    <label for="name">Full name:</label>
+                    <input type="text" id="name" name="name" placeholder="Full name">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" placeholder="E-mail">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </form>
+                <button type="submit" form="register" value="register">SIGN UP</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="js/switch.js"></script>
+</html>
