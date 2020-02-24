@@ -1,6 +1,20 @@
 * {
   box-sizing: border-box;
 }
+.root {
+  --wrapper-width: 0.85;
+  --content-row-width: 0.8;
+  --content-element-width: 0.5;
+  --content-height: 400px;
+  --delta: 40px;
+  --background-delta: var(--delta);
+  --background-width: calc((calc(100%) * var(--wrapper-width) * var(--content-row-width) * 0.5) - var(--background-delta));
+  --padding: var(--background-delta);
+  --double-padding: calc(var(--padding) * 2);
+  --negative-delta: calc(0px - var(--background-delta));
+  --foreground-color: #F0FFFF;
+  --highlight-color: #FF7F50;
+}
 body {
   background: #2d3039;
   height: 100vh;
@@ -26,7 +40,7 @@ form {
   label {
     display: none;
   }
-  input {
+  input, select {
     font-family: inherit;
     font-size: 1.1em;
     line-height: 2.4em;
@@ -47,11 +61,12 @@ button {
   height: 50px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  transition: transform .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   &:focus {
     outline: 0;
   }
   &:hover {
-    background-color: #4e515a;
+    transform: scale(1.1);
   }
   &:active {
     background-color: #686b74;
@@ -59,8 +74,8 @@ button {
 }
 
 .wrapper {
-  width: 80%;
-  margin: 50px auto;
+  width: calc(100% * var(--wrapper-width));
+  margin: calc(var(--background-delta) + 40px) auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,13 +86,14 @@ button {
   flex-direction: column;
   justify-content: space-around;
   align-items: baseline;
-  width: 100%;
   height: inherit;
   padding: 20px 40px;
   text-align: left;
   transition: opacity .8s linear;
+  max-width: calc(100% * var(--content-element-width));
   &.visible {
     opacity: 1;
+    pointer-events: auto;
   }
   &.invisible {
     opacity: 0;
@@ -87,52 +103,57 @@ button {
   }
 }
 
-.background {
-  transform: translateY(-320px);
-  order: 2;
+.background, .foreground {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-radius: 3px;
+  width: calc(100% * var(--content-row-width));
+  height: var(--content-height);
+}
+
+.background {
+  order: 2;
+  transform: translateY(-100%);
+  transition: transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background-color: #2d3039;
   color: white;
   border: 1px solid beige;
-  border-radius: 3px;
-  width: 80%;
-  height: 300px;
-  .content {
-    max-width: 50%;
-  }
 }
 
 .foreground {
   order: 1;
-  width: 38%;
-  height: 340px;
-  border-radius: 3px;
-  background-color: beige;
-  transform: translateX(-50%);
-  transition: transform .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  &.right {
-    transform: translateX(50%);
+  z-index: 100;
+  padding: 0 var(--background-delta);
+  background-color: transparent;
+  pointer-events: none;
+  margin-bottom: calc(var(--padding) - var(--background-delta));
+  &:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    display: block;
+    width: var(--background-width);
+    height: calc(var(--content-height) + 2 * var(--background-delta));
+    border-radius: 3px;
+    background-color: var(--foreground-color);
+    box-shadow: 1px 1px 6px 3px rgba(0,0,0,0.4);
+    transform: translate(0, var(--negative-delta));
+    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  .content {
-    z-index: 100;
+  &.right:before {
+    transform: translate(100%, var(--negative-delta));
   }
+
   h2 {
-    color: coral;
+    color: var(--highlight-color);
   }
   button {
-    background-color: coral;
+    background-color: var(--highlight-color);
     border: none;
-    &:hover {
-      background-color: #c2c2a9;
-    }
-    &:active {
-      background-color: #a4a48b;
-    }
   }
   a {
-    color: coral;
+    color: var(--highlight-color);
     text-align: right;
   }
 }
@@ -145,30 +166,21 @@ button {
   align-items: center;
 }
 
-@media screen and (max-width: 1080px) {
-  .wrapper {
-    width: 90%;
+@media screen and (max-width: 768px) {
+  .root {
+    --wrapper-width: 0.9;
+    --background-width: calc((calc(100%) * var(--wrapper-width) * var(--content-row-width)));
+    --content-element-width: 1;
+    --content-height: 280px;
+    --background-delta: 0px;
+    --padding: 20px;
   }
   .content {
     transition: opacity .2s ease-in;
   }
-  .foreground {
-    height: 280px;
-    order: 1;
-    width: 80%;
+  .background, .foreground, .foreground:before, .foreground.right:before {
+    box-shadow: none;
     transform: none;
-    margin-bottom: 20px;
-    &.right {
-      transform: none;
-    }
-  }
-  .background {
-    transform: none;
-    height: 280px;
     display: block;
-    order: 2;
-    .content {
-      max-width: 100%;
-    }
   }
 }

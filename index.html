@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/settings.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
     <meta name="theme-color" content="#fafafa">
 </head>
-<body>
+<body class="root">
 
     <div class="wrapper">
 
@@ -22,7 +23,7 @@
             </div>
             <div class="content visible">
                 <h2>Don't have an account?</h2>
-                <p>Right text yadda yadda yadda lorem ipsum something something. Something else entirely.</p>
+                <p>Right text yadda yadda yadda lorem ipsum. Something else entirely.</p>
                 <button id="right-button">SIGN UP</button>
             </div>
         </div>
@@ -56,7 +57,45 @@
         </div>
 
     </div>
+    <div class="settings">
+        <form name="paramsForm" id="paramsForm" >
+            <fieldset>
+                <label for="height" id="heightLabel" >Height: 400px</label>
+                <input type="range" min="250" max="600" step="10" value="400" id="height" name="height" onchange="applyHeight()">
+            </fieldset>
+            <fieldset>
+                <label for="width" id="widthLabel" >Width: 80%</label>
+                <input type="range" min="0.55" max="1" step="0.05" value="0.8" id="width" name="width" onchange="applyWidth()">
+            </fieldset>
+            <fieldset>
+                <label for="delta" id="deltaLabel" >Delta: 40px</label>
+                <input type="range" min="0" max="100" step="5" value="40" id="delta" name="delta" onchange="applyDelta()">
+            </fieldset>
+            <fieldset>
+                <label for="foreground" id="foregroundLabel" >Foreground:</label>
+                <select id="foreground" name="foreground" onchange="applyForeground()">
+                    <option value="#F0FFFF">Azure</option>
+                    <option value="#F0FFF0">Honeydew</option>
+                    <option value="#F5F5DC">Beige</option>
+                    <option value="#F7C59F">Peach</option>
+                    <option value="#C1CAD6">Lavender Gray</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for="highlight" id="highlightLabel" >Highlight:</label>
+                <select id="highlight" name="highlight" onchange="applyHighlight()">
+                    <option value="#FF7F50">Coral</option>
+                    <option value="#BA1B1D">Cornell Red</option>
+                    <option value="#5E503F">Umber</option>
+                    <option value="#387D7A">Ming</option>
+                    <option value="#32936F">Emerald</option>
+                    <option value="#0C6291">Sea Blue</option>
+                </select>
+            </fieldset>
+        </form>
+    </div>
 
 </body>
 <script src="js/switch.js"></script>
+<script src="js/settings.js"></script>
 </html>
