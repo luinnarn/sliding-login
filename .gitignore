@@ -1,7 +1,5 @@
 .idea/
 .firebase/
 .firebaserc
-css/settings.css
-css/settings.css.map
 firebase.json
 public/
