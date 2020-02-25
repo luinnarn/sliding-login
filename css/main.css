@@ -167,7 +167,7 @@ button:active {
   align-items: center;
 }
 
-@media screen and (max-width: 900px) and (max-resolution: 300dpi), screen and (max-width: 450px) and (min-resolution: 301dpi) {
+@media screen and (max-width: 900px) and (max-resolution: 280dpi), screen and (max-width: 700px) and (min-resolution: 281dpi) {
   .root {
     --wrapper-width: 0.9;
     --background-width: calc((calc(100%) * var(--wrapper-width) * var(--content-row-width)));
@@ -185,6 +185,27 @@ button:active {
     box-shadow: none;
     transform: none;
     display: block;
+  }
+}
+@media screen and (max-width: 900px) {
+  form input {
+    font-size: 1em;
+    line-height: 2em;
+  }
+
+  p, a, button {
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .root {
+    --content-height: 210px;
+    --content-row-width: 0.95;
+  }
+
+  .wrapper {
+    margin: calc(var(--background-delta) + 10px) auto;
   }
 }
 
