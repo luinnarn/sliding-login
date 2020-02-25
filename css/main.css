@@ -167,7 +167,7 @@ button:active {
   align-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) and (max-resolution: 300dpi), screen and (max-width: 450px) and (min-resolution: 301dpi) {
   .root {
     --wrapper-width: 0.9;
     --background-width: calc((calc(100%) * var(--wrapper-width) * var(--content-row-width)));
